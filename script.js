@@ -1,68 +1,79 @@
 const buttn = document.getElementsByClassName('button')
 
-for( const btn of buttn){
+document.addEventListener("DOMContentLoaded", function() {
+  const buttons = document.querySelectorAll('.button');
+  let count = 0;
+  let total = 0;
+  let available = 32;
+  let couponApplied = false;
 
-    let count = 0;
-    let tk = 0;
-    let available = 32 ;
-    let buttonsClicked = {};
-    
-    const buttons = document.getElementsByClassName('button');
-    for (const btn of buttons) {
-        btn.addEventListener('click', function() {
-            // Check if button has already been clicked and count is less than 4
-            if (!buttonsClicked[btn.innerText] && count < 4) {
-                count = count + 1;
-                tk = count * 550;
-                available = available - 1;
-                document.getElementById('cnt').innerText = count;
-                document.getElementById('tk').innerText = tk;
-                document.getElementById('grand-total').innerText = tk ; 
-                document.getElementById('available').innerText = available;
-                document.getElementById('available-2').innerText = available;
-                btn.style.backgroundColor = "green";
+  buttons.forEach(btn => {
+      btn.addEventListener('click', function() {
+          if (count < 4 && available > 0 && !btn.classList.contains('selected')) {
+              count++;
+              total = count * 550;
+              available--;
+              btn.classList.add('selected');
+          } else if (btn.classList.contains('selected')) {
+              count--;
+              total = count * 550;
+              available++;
+              btn.classList.remove('selected');
+          } else {
+              alert('Seat limit reached or seat already selected');
+          }
 
-                buttonsClicked[btn.innerText] = true; // Mark button as clicked
-            }
+          document.getElementById('cnt').textContent = count;
+          document.getElementById('tk').textContent = total;
+          document.getElementById('grand-total').textContent = total;
+          document.getElementById('available').textContent = available;
+          document.getElementById('available-2').textContent = available;
+          btn.style.backgroundColor = "green";
 
-            // Coupon
+          if (count === 4) {
+              document.getElementById('applyBtn').disabled = false;
+          } else {
+              document.getElementById('applyBtn').disabled = true;
+          }
 
-        const coupon=document.getElementById("coupon");
-        handleSeatClick(seatData);
-      if(count>3){
-          alert("You have reached the limit!");
-          disableSeats(seat);
-          coupon.removeAttribute("disabled");
-          const discountTr=document.getElementsByClassName("discountTr");
-          const applyBtn= document.getElementById("applyBtn");
-          applyBtn.addEventListener("click",function(e){
-              const couponValue=coupon.value;
-              if (couponValue== 'NEW15'){
-                  const discount15= 2200*0.15;
-                  setInnerTextById("discount",discount15);
-                  const finalPrice= 2200-discount15;
-                  setInnerTextById("grandTotal",finalPrice);
-                  coupon.classList.add("hidden");
-                  applyBtn.classList.add("hidden");
-                  discountTr.classList.remove("hidden");
-              }
-              else if(couponValue == 'Couple 20'){
-                  const discount20= 2200*0.20;
-                  setInnerTextById("discount",discount20);
-                  const finalPrice= 2200-discount20;
-                  setInnerTextById("grandTotal",finalPrice);
-                  coupon.classList.add("hidden");
-                  applyBtn.classList.add("hidden");
-                  discountTr.classList.remove("hidden");
-              }
-              else{
-                  alert('Wrong Coupon! Use a valid one.');
-              }
-          })
+          if (count < 4 && couponApplied) {
+              cancelCoupon();
+          }
+      });
+  });
+
+  const applyBtn = document.getElementById('applyBtn');
+  const couponInput = document.getElementById('coupon');
+
+  applyBtn.addEventListener('click', function() {
+      applyCoupon(couponInput.value);
+  });
+
+  function applyCoupon(couponValue) {
+      if (couponValue === 'NEW15' && !couponApplied) {
+          const discount = Math.round(total * 0.15);
+          total -= discount;
+          document.getElementById('grand-total').textContent = total;
+          couponInput.disabled = true;
+          couponApplied = true;
+          applyBtn.disabled = true;
+      } else if (couponValue === 'Couple 20' && !couponApplied) {
+          const discount = Math.round(total * 0.20);
+          total -= discount;
+          document.getElementById('grand-total').textContent = total;
+          couponInput.disabled = true;
+          couponApplied = true;
+          applyBtn.disabled = true;
       }
-        });
-    }
-}
+  }
+
+  function cancelCoupon() {
+      total = count * 550;
+      document.getElementById('grand-total').textContent = total;
+      couponApplied = false;
+      couponInput.disabled = false;
+  }
+});
 
 
 function scrollToMainSection(){
@@ -101,6 +112,12 @@ buttons.forEach(button => {
   });
 });
 
+
+
+//Window reload
+document.getElementById('reload').addEventListener('click', function(event) {
+  window.location.reload();
+});
 
 
 

@@ -1,4 +1,5 @@
 const buttn = document.getElementsByClassName('button')
+
 for( const btn of buttn){
 
     let count = 0;
@@ -23,9 +24,63 @@ for( const btn of buttn){
 
                 buttonsClicked[btn.innerText] = true; // Mark button as clicked
             }
+
+            // Coupon
+
+        const coupon=document.getElementById("coupon");
+        handleSeatClick(seatData);
+      if(count>3){
+          alert("You have reached the limit!");
+          disableSeats(seat);
+          coupon.removeAttribute("disabled");
+          const discountTr=document.getElementsByClassName("discountTr");
+          const applyBtn= document.getElementById("applyBtn");
+          applyBtn.addEventListener("click",function(e){
+              const couponValue=coupon.value;
+              if (couponValue== 'NEW15'){
+                  const discount15= 2200*0.15;
+                  setInnerTextById("discount",discount15);
+                  const finalPrice= 2200-discount15;
+                  setInnerTextById("grandTotal",finalPrice);
+                  coupon.classList.add("hidden");
+                  applyBtn.classList.add("hidden");
+                  discountTr.classList.remove("hidden");
+              }
+              else if(couponValue == 'Couple 20'){
+                  const discount20= 2200*0.20;
+                  setInnerTextById("discount",discount20);
+                  const finalPrice= 2200-discount20;
+                  setInnerTextById("grandTotal",finalPrice);
+                  coupon.classList.add("hidden");
+                  applyBtn.classList.add("hidden");
+                  discountTr.classList.remove("hidden");
+              }
+              else{
+                  alert('Wrong Coupon! Use a valid one.');
+              }
+          })
+      }
         });
     }
 }
+
+
+function scrollToMainSection(){
+    const mainSection = document.getElementById('main-section');
+  
+        // Scroll options
+        const scrollOptions = {
+            behavior: 'smooth',
+        };
+  
+        // Scroll to the main section
+        mainSection.scrollIntoView(scrollOptions);
+  }
+
+
+
+
+
 
 const buttons = document.querySelectorAll('.button');
 const seatHistory = document.getElementById('new-p');
@@ -45,6 +100,9 @@ buttons.forEach(button => {
     lastClickedButton = button;
   });
 });
+
+
+
 
 // document.getElementById('coupon').addEventListener('keyup', function(event){
 //     const text = event.target.value

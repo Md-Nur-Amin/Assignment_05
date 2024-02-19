@@ -165,13 +165,13 @@
               <img class="h-[48px] w-[68px] mt-1" src="images/bus-logo.png" alt="">
 
               <div class="pr-52">
-                <h3 class="text-xl font-extrabold text-[#030712CC]">Greenline Paribahan</h3>
+                <h3 class="text-xl font-extrabold text-[#030712CC]">Eagle Paribahan</h3>
                 <p class="text-[#03071299] py-2">Coach-009-WEB ! AC_Business</p>
               </div>
 
               <div class=" ">
                 <a class="btn border-[#1dd100cc] bg-[#1dd1001a] text-[#1DD100]">
-                  <img src="images/seat-green.png" alt="">40 Seats left
+                  <img src="images/seat-green.png" alt=""> <span id="available-2"> 32 </span> Seats left
                 </a>
               </div>
             </div>
@@ -255,9 +255,10 @@
               <div class="flex gap-x-16 py-6">
                 <div class="flex gap-x-8">
                   <p class="flex justify-center items-center text-[16px] font-medium text-[#03071280]">A</p>
-                  <button  class="button bg-[#F7F8F8] text-[#03071280] text-[16px] font-medium w-[110px] h-[56px] flex justify-center items-center rounded-xl">A1</button>
-                  <button class="button bg-[#F7F8F8] text-[#03071280] text-[16px] font-medium w-[110px] h-[56px] flex justify-center items-center rounded-xl">A2</button>
+                  <button class="button bg-[#F7F8F8] text-[#03071280] text-[16px] font-medium w-[110px] h-[56px] flex justify-center items-center rounded-xl"> <span class="A1"> A1 </span></button>
+                  <button class="button bg-[#F7F8F8] text-[#03071280] text-[16px] font-medium w-[110px] h-[56px] flex justify-center items-center rounded-xl"><span id="A2">A2 </span></button>
                 </div>
+                
                 
                 <div class="flex gap-x-8">
                   <button class=" button bg-[#F7F8F8] text-[#03071280] text-[16px] font-medium w-[110px] h-[56px] flex justify-center items-center rounded-xl">A3</button>
@@ -379,7 +380,7 @@
 
               <div class="bg-[#F7F8F8] rounded-xl p-8">
 
-                <div class="flex justify-items-center gap-x-24">
+                <div class="flex justify-items-center gap-x-20">
                   <p class="text-[16px] font-medium text-[#030712] flex">Seats <span id="cnt" class="bg-[#1DD100] text-white w-6 text-center rounded-md ml-1">0</span></p>
                   <p class="text-[16px] font-medium text-[#030712]">Class</p>
                   <p class="text-[16px] font-medium text-[#030712]">Price</p>
@@ -390,15 +391,16 @@
                 </div>
                 
                 <div class="flex justify-items-center gap-x-24">
-                  <p class="text-[16px] font-medium text-[#03071299] flex">C2 </p>
-                  <p class="text-[16px] font-medium text-[#03071299]">Economy</p>
-                  <p class="text-[16px] font-medium text-[#03071299]"> <span id="tk"> 000</span></p>
+                  <p id="new-p" class="text-[16px] font-medium text-[#03071299] flex-col"> </p>
+                  <!-- <p class="text-[16px] font-medium text-[#03071299]"> </p>
+                  <p class="text-[16px] font-medium text-[#03071299]"> <span > 550</span></p> -->
                 </div>
-                <div class="flex justify-items-center gap-x-24">
+
+                <!-- <div class="flex justify-items-center gap-x-24">
                   <p class="text-[16px] font-medium text-[#03071299] flex">C2 </p>
                   <p class="text-[16px] font-medium text-[#03071299]">Economy</p>
                   <p class="text-[16px] font-medium text-[#03071299]">550</p>
-                </div>
+                </div> -->
 
                 <div class="my-4 border-dashed border-[#03071233]">
                   <hr>
@@ -406,7 +408,7 @@
 
                 <div class="flex justify-between gap-x-24">
                   <p class="text-[16px] font-medium text-[#030712] flex">Total Price</p>
-                  <p class="text-[16px] font-medium text-[#030712]">BDT <span>1100</span> </p>
+                  <p class="text-[16px] font-medium text-[#030712]">BDT <span id="tk"> 000</span> </p>
                 </div>
 
                 <div class="flex items-center bg-white rounded-xl my-4">
@@ -422,22 +424,22 @@
 
               <div class="py-6">
                 <p class="font-semibold text-[#030712] text-[16px] mb-2">Passenger Name*</p>
-                <input type="text" placeholder="Enter your name" class="input input-bordered w-full " />
+                <input type="text" placeholder="Enter your name" class="input input-bordered w-[350px]"/>
               </div>
 
               <div class="">
                 <p class="font-semibold text-[#030712] text-[16px] mb-2">Phone Number*</p>
-                <input type="text" placeholder="Enter your phone number" class="input input-bordered w-full " />
+                <input type="text" placeholder="Enter your phone number" class="input input-bordered w-[350px]"/>
               </div>
 
 
               <div class="py-6">
                 <p class="font-semibold text-[#030712] text-[16px] mb-2">Email ID</p>
-                <input type="text" placeholder="Enter your email id" class="input input-bordered w-full " />
+                <input type="text" placeholder="Enter your email id" class="input input-bordered w-[350px]"/>
               </div>
 
               <div class="flex justify-center">
-                <button class="btn rounded-2xl font-extrabold text-xl text-white bg-[#1DD100] px-40">Next</button>
+                <button class="btn rounded-xl font-bold text-xl text-white bg-[#1DD100] px-36">Next</button>
               </div>
               <div class="flex justify-around py-6">
                 <p class="text-[16px] font-medium text-[#03071299] flex">Terms and Conditions</p>

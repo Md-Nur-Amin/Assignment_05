@@ -18,6 +18,7 @@ for( const btn of buttn){
                 document.getElementById('tk').innerText = tk;
                 document.getElementById('grand-total').innerText = tk ; 
                 document.getElementById('available').innerText = available;
+                document.getElementById('available-2').innerText = available;
                 btn.style.backgroundColor = "green";
 
                 buttonsClicked[btn.innerText] = true; // Mark button as clicked
@@ -26,8 +27,24 @@ for( const btn of buttn){
     }
 }
 
+const buttons = document.querySelectorAll('.button');
+const seatHistory = document.getElementById('new-p');
+let lastClickedButton = null;
 
-
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    if (lastClickedButton !== button) {
+      if (seatHistory.children.length < 4) {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = button.textContent.trim() + "_______________Economy" + "_______________500";
+        seatHistory.appendChild(paragraph);
+      } else {
+        alert('You have reached the maximum number of selections.');
+      }
+    }
+    lastClickedButton = button;
+  });
+});
 
 // document.getElementById('coupon').addEventListener('keyup', function(event){
 //     const text = event.target.value
